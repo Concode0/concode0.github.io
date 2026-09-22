@@ -9,7 +9,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     robotsTxt({
-      sitemap: `${SITE_URL}/sitemap.xml`,
+      sitemap: `${SITE_URL.replace(/\/$/, "")}/sitemap.xml`,
     }),
   ],
   site: SITE_URL,

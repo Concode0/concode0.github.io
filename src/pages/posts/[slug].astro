@@ -4,7 +4,12 @@ import Layout from "@/layouts/Layout.astro";
 import formatDate from "@/utils/formatDate";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
+  const posts = (await getCollection("posts")).filter(
+    (post) =>
+      post.data.isPublish &&
+      !post.data.isDraft &&
+      post.data.publishedAt <= new Date(),
+  );
 
   return posts.map((post) => ({
     params: { slug: post.slug },
