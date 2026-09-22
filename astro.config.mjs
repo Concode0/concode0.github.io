@@ -2,6 +2,8 @@ import tailwind from "@astrojs/tailwind";
 import robotsTxt from "astro-robots-txt";
 import { defineConfig } from "astro/config";
 import { SITE_URL } from "./src/data/config";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 export default defineConfig({
   integrations: [
@@ -12,6 +14,8 @@ export default defineConfig({
   ],
   site: SITE_URL,
   markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
     syntaxHighlight: "shiki",
     shikiConfig: {
       theme: "nord",
