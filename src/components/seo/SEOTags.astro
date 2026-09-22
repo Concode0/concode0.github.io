@@ -40,40 +40,26 @@ const openGraph = {
         alt: openGraph.alt,
       },
     }}
-    <SEO
-      charset="UTF-8"
-      title={title || DEFAULT_TITLE_PAGE}
-      description={description || DEFAULT_DESCRIPTION_PAGE}
-      noindex={noindex || false}
-      openGraph={{
-        basic: {
-          title: openGraph.title,
-          type: openGraph.type,
-          image: openGraph.image,
+    extend={{
+      link: [
+        { rel: "icon", href: "/favicon.svg" },
+        { rel: "sitemap", href: "/sitemap.xml" },
+      ],
+      meta: [
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1",
         },
-        image: {
-          alt: openGraph.alt,
+        {
+          name: "generator",
+          content: Astro.generator,
         },
-      }}
-      extend={{
-        link: [
-          { rel: "icon", href: "/favicon.svg" },
-          { rel: "sitemap", href: "/sitemap.xml" },
-        ],
-        meta: [
-          {
-            name: "viewport",
-            content: "width=device-width, initial-scale=1",
-          },
-          {
-            name: "generator",
-            content: Astro.generator,
-          },
-        ],
-      }}
-    />
+      ],
+    }}
+  />
 
   <ViewTransitions fallback="swap" />
+
   <AstroFont
     config={[
       {
@@ -91,7 +77,7 @@ const openGraph = {
         src: [],
         preload: false,
         display: "swap",
-        selector: "html",
+        selector: ".font-mono",
         name: "IBM Plex Mono",
         fallback: "monospace",
         cssVariable: "font-ibm-plex-mono",
