@@ -1,6 +1,6 @@
 ---
 import type { TailwindColor } from "@/utils/types/tailwind";
-import { MAP_COLOR_VARIANT_TO_BG } from "@/utils/mapVariants";
+import { MAP_COLOR_VARIANT_TO_RGB } from "@/utils/mapVariants";
 
 type Props = {
   position: "bottom" | "top";
@@ -8,13 +8,23 @@ type Props = {
 };
 
 const { position, color } = Astro.props;
+const rgb = MAP_COLOR_VARIANT_TO_RGB[color];
 ---
 
 <div
+  aria-hidden="true"
   class:list={{
-    [`fixed z-0 h-[134px] w-[134px] lg:w-[300px] lg:h-[300px] rounded-full ${MAP_COLOR_VARIANT_TO_BG[color]} blur-[150px] md:blur-[350px] opacity-50`]: true,
-    ["left-0 top-0"]: position === "top",
-    ["right-0 bottom-0"]: position === "bottom",
+    "pointer-events-none fixed z-0 h-[360px] w-[360px] md:h-[600px] md:w-[600px]": true,
+    "-left-[180px] -top-[180px] md:-left-[300px] md:-top-[300px]":
+      position === "top",
+    "-bottom-[180px] -right-[180px] md:-bottom-[300px] md:-right-[300px]":
+      position === "bottom",
   }}
->
-</div>
+  style={`background: radial-gradient(
+    circle,
+    rgb(${rgb} / 0.28) 0%,
+    rgb(${rgb} / 0.12) 35%,
+    rgb(${rgb} / 0.04) 55%,
+    transparent 72%
+  );`}
+></div>
