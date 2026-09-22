@@ -2,8 +2,7 @@
 title: "Following Expert Cache Misses in ds4"
 publishedAt: 2026-09-22
 description: "Notes from tracing cache misses, router state, latent sketches, and I/O scheduling in DeepSeek V4.1 SSD streaming."
-isPublish: false
-isDraft: true
+isPublish: True
 ---
 
 I started looking at ds4's expert cache because the miss count looked large enough to be interesting.
