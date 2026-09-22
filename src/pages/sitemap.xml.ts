@@ -17,7 +17,7 @@ export async function GET() {
   ${publishedPosts
     .map((post) => {
       const lastMod = post.data.publishedAt.toISOString();
-      return `<url><loc>${siteUrl}/posts/${post.slug}/</loc><lastmod>${lastMod}</lastmod></url>`;
+      return `<url><loc>${siteUrl}/posts/${post.id}/</loc><lastmod>${lastMod}</lastmod></url>`;
     })
     .join("\n")}
 </urlset>

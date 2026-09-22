@@ -1,8 +1,7 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { SITE_URL } from "@/data/config";
 import type { HeadTags } from "@/utils/types/HeadTags";
-import { AstroFont } from "astro-font";
 import { SEO } from "astro-seo";
 
 type Props = HeadTags;
@@ -58,42 +57,27 @@ const openGraph = {
     }}
   />
 
-  <ViewTransitions fallback="swap" />
+  <ClientRouter />
 
-  <AstroFont
-    config={[
-      {
-        src: [],
-        preload: false,
-        display: "swap",
-        selector: "html",
-        name: "IBM Plex Sans",
-        fallback: "sans-serif",
-        cssVariable: "font-ibm-plex-sans",
-        googleFontsURL:
-          "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap",
-      },
-    ]}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
   />
 
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
-/>
-
-<style is:global>
-  :root {
-    --font-ibm-plex-mono:
-      "IBM Plex Mono",
-      ui-monospace,
-      SFMono-Regular,
-      Menlo,
-      Monaco,
-      Consolas,
-      "Liberation Mono",
-      "Courier New",
-      monospace;
-  }
-</style>
-
+  <style is:global>
+    :root {
+      --font-ibm-plex-sans: "IBM Plex Sans", sans-serif;
+      --font-ibm-plex-mono:
+        "IBM Plex Mono",
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+    }
+  </style>
 </head>
