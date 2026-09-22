@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-open-sans)", ...defaultTheme.fontFamily.sans],
+        sans: ["var(--font-ibm-plex-sans)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-ibm-plex-mono)", ...defaultTheme.fontFamily.mono],
       },
     },
   },

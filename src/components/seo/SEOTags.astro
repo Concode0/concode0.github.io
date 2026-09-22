@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import { SITE_URL } from "@/data/config";
 import type { HeadTags } from "@/utils/types/HeadTags";
 import { AstroFont } from "astro-font";
@@ -8,15 +9,15 @@ type Props = HeadTags;
 
 const { title, description, noindex, og } = Astro.props;
 
-const DEFAULT_TITLE_PAGE = "Astro - Portfolio template";
+const DEFAULT_TITLE_PAGE = "Concode0";
 const DEFAULT_DESCRIPTION_PAGE =
-  "A minimal portfolio template built with Astro and Tailwindcss.";
+  "Projects, open-source work, and technical notes by Concode0.";
 const DEFAULT_URL_SITE = SITE_URL;
 
 const openGraph = {
   title: title || og?.title || DEFAULT_TITLE_PAGE,
   type: og?.type || "website",
-  image: og?.image || "/opengraph-image.jpg",
+  image: og?.image || "/opengraph-image.svg",
   alt: og?.alt || "astro portfolio template image",
   url: DEFAULT_URL_SITE,
   description: og?.description || DEFAULT_DESCRIPTION_PAGE,
@@ -39,28 +40,40 @@ const openGraph = {
         alt: openGraph.alt,
       },
     }}
-    twitter={{
-      creator: "@itsstormzz_",
-    }}
-    extend={{
-      link: [
-        { rel: "icon", href: "/favicon.svg" },
-        { rel: "sitemap", href: "/sitemap.xml" },
-      ],
-      meta: [
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "generator", content: Astro.generator },
-        {
-          name: "twitter:image",
-          content: openGraph.image,
+    <SEO
+      charset="UTF-8"
+      title={title || DEFAULT_TITLE_PAGE}
+      description={description || DEFAULT_DESCRIPTION_PAGE}
+      noindex={noindex || false}
+      openGraph={{
+        basic: {
+          title: openGraph.title,
+          type: openGraph.type,
+          image: openGraph.image,
         },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: openGraph.title },
-        { name: "twitter:description", content: openGraph.description },
-        { name: "twitter:site", content: "@itsstormzz_" },
-      ],
-    }}
-  />
+        image: {
+          alt: openGraph.alt,
+        },
+      }}
+      extend={{
+        link: [
+          { rel: "icon", href: "/favicon.svg" },
+          { rel: "sitemap", href: "/sitemap.xml" },
+        ],
+        meta: [
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1",
+          },
+          {
+            name: "generator",
+            content: Astro.generator,
+          },
+        ],
+      }}
+    />
+
+  <ViewTransitions fallback="swap" />
   <AstroFont
     config={[
       {
@@ -68,11 +81,22 @@ const openGraph = {
         preload: false,
         display: "swap",
         selector: "html",
-        name: "Open Sans",
+        name: "IBM Plex Sans",
         fallback: "sans-serif",
-        cssVariable: "font-open-sans",
+        cssVariable: "font-ibm-plex-sans",
         googleFontsURL:
-          "https://fonts.googleapis.com/css2?family=Open+Sans&display=swap",
+          "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap",
+      },
+      {
+        src: [],
+        preload: false,
+        display: "swap",
+        selector: "html",
+        name: "IBM Plex Mono",
+        fallback: "monospace",
+        cssVariable: "font-ibm-plex-mono",
+        googleFontsURL:
+          "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap",
       },
     ]}
   />
