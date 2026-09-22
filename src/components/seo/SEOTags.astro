@@ -73,17 +73,27 @@ const openGraph = {
         googleFontsURL:
           "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap",
       },
-      {
-        src: [],
-        preload: false,
-        display: "swap",
-        selector: ".font-mono",
-        name: "IBM Plex Mono",
-        fallback: "monospace",
-        cssVariable: "font-ibm-plex-mono",
-        googleFontsURL:
-          "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap",
-      },
     ]}
   />
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+/>
+
+<style is:global>
+  :root {
+    --font-ibm-plex-mono:
+      "IBM Plex Mono",
+      ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Monaco,
+      Consolas,
+      "Liberation Mono",
+      "Courier New",
+      monospace;
+  }
+</style>
+
 </head>
