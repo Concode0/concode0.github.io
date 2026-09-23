@@ -28,6 +28,17 @@
   @apply bg-transparent p-0 text-inherit;
 }
 
+.post .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+.post .katex-display > .katex {
+  min-width: max-content;
+}
+
 .post a {
   @apply text-neutral-100 underline decoration-neutral-600 underline-offset-4;
 }

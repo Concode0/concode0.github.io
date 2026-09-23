@@ -183,7 +183,7 @@ I rotated the Pencil around its physical axes, differentiated the quaternion tra
 The convention that matched was
 
 $$
-\boxed{R_{WB}},
+R_{WB},
 $$
 
 meaning a vector expressed in Pencil body coordinates is transformed into the world/reference frame.
@@ -193,7 +193,7 @@ Using
 $$
 \Delta R_k
 =
-R_{WB,k}^{-1}R_{WB,k+1}
+R_{WB,k}^{-1}\,R_{WB,k+1}
 $$
 
 to recover body angular velocity gave correlations against the packet gyro of roughly
@@ -219,12 +219,10 @@ That made the relationship difficult to explain as coincidence.
 The regression scale also came out almost suspiciously clean. The estimated denominators were around 511–512 on all three axes. I use
 
 $$
-\boxed{
 \omega_B
 =
 \frac{g_{\mathrm{raw}}}{512}
-\ \mathrm{rad/s}
-}.
+\ \mathrm{rad/s}.
 $$
 
 One count is therefore
@@ -302,9 +300,7 @@ $$
 So I settled on
 
 $$
-\boxed{
 a_{\mathrm{telemetry}}=a_B
-}
 $$
 
 for the coordinate system.
@@ -343,11 +339,9 @@ That changed the interpretation substantially.
 The useful model was now
 
 $$
-\boxed{
 a_B^{\mathrm{lin}}
 =
-\text{processed, gravity-compensated body-frame linear acceleration}
-}.
+\text{processed, gravity-compensated body-frame linear acceleration}.
 $$
 
 So Apple was apparently already doing some orientation/fusion processing before this telemetry was emitted.
@@ -451,9 +445,7 @@ $$
 If $k_a$ is the acceleration conversion in counts per $\mathrm{m/s^2}$, then
 
 $$
-\boxed{
-\beta_d=k_a(r_0-d)
-}.
+\beta_d=k_a(r_0-d).
 $$
 
 That gives a useful prediction: $\beta_d$ should vary linearly with the physical pivot position.
@@ -482,19 +474,15 @@ The result was much cleaner than I expected from the physical setup.
 A linear fit gave
 
 $$
-\boxed{
 \beta(d)
 =
 10.6256-218.884d
-}
 $$
 
 with $d$ in meters, and
 
 $$
-\boxed{
-R^2=0.99816
-}.
+R^2=0.99816.
 $$
 
 The sign change near 50 mm was especially useful. Once the pivot passes the sensor, the lever arm reverses direction, and the fitted coefficient did exactly that.
@@ -527,9 +515,7 @@ That was the point where I became reasonably comfortable that the earlier ~48 mm
 The zero crossing is
 
 $$
-\boxed{
-r_0=48.54\ \mathrm{mm}
-}.
+r_0=48.54\ \mathrm{mm}.
 $$
 
 The formal regression standard error was around 0.49 mm, but I do not think that is a useful statement of the real physical uncertainty. The books, my hand, pivot clearance, and the finite radius of the Pencil all introduce systematic error that the regression does not know about.
@@ -537,11 +523,9 @@ The formal regression standard error was around 0.49 mm, but I do not think that
 For actual use I would take
 
 $$
-\boxed{
 r_{T\rightarrow S}
 \approx
 [0.0485,0,0]^T\ \mathrm{m}
-}
 $$
 
 and attach a longitudinal uncertainty of a few millimeters rather than pretending I had located the chip to sub-millimeter precision.
@@ -557,11 +541,9 @@ $$
 The slope of the pivot regression was
 
 $$
-\boxed{
 k_a
 =
-218.88\ \mathrm{counts/(m/s^2)}
-}.
+218.88\ \mathrm{counts/(m/s^2)}.
 $$
 
 In terms of $g$,
@@ -575,12 +557,10 @@ $$
 So my practical decoder became
 
 $$
-\boxed{
 a_B^{\mathrm{lin}}
 =
 \frac{a_{\mathrm{raw}}}{218.9}
-\ \mathrm{m/s^2}
-}.
+\ \mathrm{m/s^2}.
 $$
 
 Equivalently,
@@ -628,7 +608,6 @@ $$
 For the measured sensor acceleration, $a_S^B$, I use
 
 $$
-\boxed{
 a_T^B
 =
 a_S^B
@@ -638,18 +617,15 @@ a_S^B
 \omega^B\times
 \left(
 \omega^B\times r_{S\rightarrow T}
-\right)
-}.
+\right).
 $$
 
 Then the decoded quaternion gives world-frame tip acceleration:
 
 $$
-\boxed{
 a_T^W
 =
-R_{WB}a_T^B
-}.
+R_{WB}a_T^B.
 $$
 
 That does not magically make double integration stable. Bias, low-frequency drift, stroke constraints, and boundary conditions are still the actual trajectory-reconstruction problem.
@@ -679,9 +655,7 @@ The stream period is about 10 ms, and the objective was broad enough around zero
 For implementation I would simply use
 
 $$
-\boxed{
-\tau_{\mathrm{accel}-\mathrm{gyro}}=0
-}.
+\tau_{\mathrm{accel}-\mathrm{gyro}}=0.
 $$
 
 The important result is that I did not find evidence of a multi-sample relative delay.
@@ -727,11 +701,9 @@ These were useful mostly as confirmation that Report ID 8 was a fairly rich inte
 For the trajectory problem, the state I actually cared about remained much smaller:
 
 $$
-\boxed{
 z_k
 =
-(t_k,R_{WB,k},\omega_{B,k},a^{\mathrm{lin}}_{B,k})
-}.
+(t_k,R_{WB,k},\omega_{B,k},a^{\mathrm{lin}}_{B,k}).
 $$
 
 My working constants were therefore:
