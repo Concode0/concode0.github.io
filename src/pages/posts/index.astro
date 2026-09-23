@@ -26,8 +26,9 @@ const posts = (await getCollection("posts"))
             href={`/posts/${post.id}`}
           >
             <div class="flex w-full items-center justify-between">
-              <h2 class="text-lg">{post.data.title}</h2>
-
+              <h2 class="min-w-0 text-lg">
+              {post.data.title}
+            </h2>
               <div class="flex flex-row items-center gap-4">
                 <p>{formatDate(post.data.publishedAt)}</p>
                 <svg
@@ -52,7 +53,9 @@ const posts = (await getCollection("posts"))
                 </svg>
               </div>
             </div>
-            <p>{post.data.description}</p>
+            <p class="min-w-0 break-words [overflow-wrap:anywhere]">
+              {post.data.description}
+            </p>
           </a>
         ))
       }
