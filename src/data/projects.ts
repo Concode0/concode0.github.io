@@ -21,10 +21,10 @@ export const projects: Project[] = [
     link: "https://github.com/Concode0/clifra-model-bench",
   },
   {
-    title: "basin",
+    title: "Basin",
     description:
-      "A distributed-systems sandbox exploring decentralized load balancing through local Clifford-algebra routing signals.",
-    techs: ["Go", "Distributed Systems", "Clifford Algebra"],
+      "A deterministic sandbox for decentralized load balancing, exploring how heterogeneous nodes distribute work through local decisions and delayed gossip.",
+    techs: ["Python", "Distributed Systems", "Simulation"],
     link: "https://github.com/Concode0/basin",
   },
 ];
